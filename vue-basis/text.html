@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>v-text</title>
+</head>
+
+<body>
+    <h1>v-text</h1>
+    <hr>
+    <div id="app">
+        <span v-text="message"></span>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '<h2>Hello, here is text on Vuejs!</h2>'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>others</title>
+    <style>
+    [v-cloak] {
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>others</h1>
+    <hr>
+    <div id="app">
+        <!-- v-pre 直接展示双括号，不解析 vue data -->
+        <div v-pre>{{ message }}</div>
+        <!-- v-cloak 配合 css，主要是避免页面加载未完成时出现类似 {{ message }} 的展示 -->
+        <div v-cloak>
+          {{ message }}
+        </div>
+        <!-- v-once 记住第一次渲染的值 -->
+        <div v-once>{{ message }}</div>
+        <div><input type="text" v-model="message"></div>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello, you can see me?',
+            }
+        })
+    </script>
+</body>
+
+</html>

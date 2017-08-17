@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>v-for object</title>
+</head>
+
+<body>
+    <h1>v-for object</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for="workmate in sortWorkmates">{{ workmate.name }} - (age: {{ workmate.age }})</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                workmates: [{
+                    name: 'Lilei',
+                    age: 32
+                }, {
+                    name: 'Xiaolai',
+                    age: 30
+                }, {
+                    name: 'Chenjin',
+                    age: 21
+                }, {
+                    name: 'Kingdom',
+                    age: 25
+                }, {
+                    name: 'Piqiu',
+                    age: 17
+                }]
+            },
+            computed: {
+                sortWorkmates: function() {
+                    return this.customSort(this.workmates, 'age');
+                }
+            },
+            methods: {
+                customSort: (datas, key) => {
+                    return datas.sort(function(a, b) {
+                        var x = a[key];
+                        var y = b[key];
+                        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

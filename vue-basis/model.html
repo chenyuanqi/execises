@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>v-model</title>
+</head>
+
+<body>
+    <h1>v-model</h1>
+    <hr>
+    <div id="app">
+        <input type="text" v-model="title">
+        <p>{{ title }}</p>
+
+        <textarea  cols="30" rows="10" v-model="content"></textarea>
+        <div>{{ content }}</div>
+
+        <input type="checkbox" v-model="isChecked">
+        <label for='isChecked'>{{ isChecked }}</label>
+
+        <div>
+            <label for="arrayChecked">
+                <input type="checkbox" value="arrayChecked 1" v-model="arrayChecked">
+                arrayChecked 1
+            </label>
+            <label for="arrayChecked">
+                <input type="checkbox" value="arrayChecked 2" v-model="arrayChecked">
+                arrayChecked 2
+            </label>
+            <label for="arrayChecked">
+                <input type="checkbox" value="arrayChecked 3" v-model="arrayChecked">
+                arrayChecked 3
+            </label>
+            <p>{{ arrayChecked }}</p>
+        </div>
+
+        <div>
+            <input type="radio" value="男" v-model="sex">
+            <label for="one">男</label>
+            <input type="radio" value="女" v-model="sex">
+            <label for="one">女</label>
+            <p>{{ sex }}</p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                title: 'I am a title!',
+                content: 'You win',
+                isChecked: false,
+                arrayChecked: ["arrayChecked 1"],
+                sex: '男',
+            }
+        })
+    </script>
+</body>
+
+</html>

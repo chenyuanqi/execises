@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>v-bind</title>
+    <style>
+    .redFont {
+        color: red;
+    }
+    .blueFont {
+        color: blue;
+    }
+    .smallFont {
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>v-bind</h1>
+    <hr>
+    <div id="app">
+        <a :href="url" target="_blank">vue 官网</a>
+        <img v-bind:src="vueImg"  width="200px">
+        
+        <div :class="redFont">1、直接绑定样式</div>
+        <div :class="{redFont:isRed}">2、判断是否绑定样式</div>
+        <!-- 如果不用 [], 默认只取第一个样式 -->
+        <div :class="[redFont,smallFont]">3、绑定多个样式</div>
+        <div :class="isRed ? redFont : blueFont">4、使用三元表达式判断样式</div>
+        <!-- 注意这里的样式需要把类似 font-size 转换为 fontSize (小驼峰模式) -->
+        <div :style="{color: blue,fontSize: bigFont}">5、直接绑定 style</div>
+        <div :style="styleObject">6、使用对象绑定 style</div>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                vueImg: 'https://vuejs.org/images/logo.png',
+                url: 'https://vuejs.org/',
+                redFont: 'redFont',
+                blueFont: 'blueFont',
+                blue: 'blue',
+                smallFont: 'smallFont',
+                bigFont: '20px',
+                isRed: false,
+                styleObject: {
+                    color: 'purple',
+                    fontSize: '18px'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

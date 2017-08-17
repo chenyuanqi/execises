@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Bind-Data</title>
+</head>
+
+<body>
+    <h1>Bind Data</h1>
+    <hr>
+    <div id="app">{{ message }}</div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello, here is bind data on Vuejs!'
+            }
+        })
+    </script>
+</body>
+
+</html>

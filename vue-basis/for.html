@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>v-for</title>
+</head>
+
+<body>
+    <h1>v-for 及排序</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for="item in sortItems">{{ item }}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: [20, 23, 18, 65, 32, 19, 54, 56, 41],
+            },
+            computed: {
+                sortItems: function() {
+                    return this.items.sort(this.customSort);
+                }
+            },
+            methods: {
+                customSort: (a, b) => {
+                    return a - b;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

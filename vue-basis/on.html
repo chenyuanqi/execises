@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>v-on</title>
+</head>
+
+<body>
+    <h1>v-on</h1>
+    <hr>
+    <div id="app">
+        积分： {{ point }}<br/>
+       <button v-on:click="addPoint">+</button>
+       <!-- key-up 事件触发时机为选中该按钮或该文本框，有点不可思议-->
+       <button v-on:keyup.enter="addPointByArrow">enter for plus</button>
+       <!-- v-on: 可缩写为 @ -->
+       <button @click="reducePoint">-</button>
+       <input type="text" @keydown.enter="reducePointByArrow" v-model="point">
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                point: 1
+            },
+            methods: {
+                addPoint: function() {
+                    this.point++;
+                },
+                addPointByArrow: () => {
+                    // 使用箭头函数时， this 为 windows 对象
+                    this.app.point++;
+                },
+                reducePoint: function() {
+                    if (this.point > 0) {
+                        this.point--;
+                    }
+                },
+                reducePointByArrow: () => {
+                    // 无限制的减法
+                    this.app.point--;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
