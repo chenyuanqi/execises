@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>directive</title>
+</head>
+
+<body>
+    <h1>directive</h1>
+    <hr>
+    <div id="app">
+        <div v-demo="color">
+            {{ message }}
+        </div>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        Vue.directive('demo',function(el,binding,vnode){
+                el.style='background-color:'+binding.value;
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'I am coming from custom command by directive.',
+                color: 'green'
+            }
+        })
+    </script>
+</body>
+
+</html>

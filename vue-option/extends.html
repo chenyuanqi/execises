@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Extends</title>
+</head>
+
+<body>
+    <h1>Extends</h1>
+    <hr>
+    <div id="app">
+    ( message )
+        <p>
+            <button @click="add">add</button>
+        </p>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var extendOption = {
+            created: function() {
+                console.log("I am come from extends option By created function.");
+            },
+            methods: {
+                add: function() {
+                    console.log('However, I am come from extends option By methods: add');
+                }
+            }
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello Vue!'
+            },
+            methods: {
+                // 方法不存在时，使用 extends 中的 function
+                add: function() {
+                    console.log('I am a origin mothods: add');
+                }
+            },
+            extends: extendOption,
+            // 修改模板字符串变量定位符
+            delimiters: ['(',')']
+        })
+    </script>
+</body>
+
+</html>
