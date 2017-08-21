@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>watch</title>
+</head>
+
+<body>
+    <h1>watch</h1>
+    <hr>
+    <div id="app">
+        <span>{{ number }}</span>
+        <button @click="add">+1</button>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                number: 0
+            },
+            methods: {
+                add() {
+                    return this.number++;
+                }
+            },
+            watch: {
+                // 方法名与模型名一致
+                number(after, before) {
+                    alert(`${before} + 1 = ${after}`);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

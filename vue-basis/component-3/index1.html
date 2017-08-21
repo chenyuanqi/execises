@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>component: parents-son</title>
+</head>
+
+<body>
+    <h1>component: pass parents to son</h1>
+    <hr>
+    <div id="app">
+        <son :message="msg"></son>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        Vue.component('son',{
+            props:['message'],
+            template:`<div>{{ message }}</div>`
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: "我是父组件的数据"
+            }
+        });
+    </script>
+</body>
+
+</html>

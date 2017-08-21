@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>filter</title>
+</head>
+
+<body>
+    <h1>filters</h1>
+    <hr>
+    <div id="app">
+        过滤前：<span>{{ number }}</span>
+        过滤后：<span>{{ number|int }}</span>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                number: 33.33
+            },
+            filters: {
+                int: function(number) {
+                    return parseInt(number);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

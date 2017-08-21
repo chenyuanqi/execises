@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>set</title>
+</head>
+
+<body>
+    <h1>set</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for=" item in arr">{{ item }}</li>
+        </ul>
+    </div>
+    <button onclick="add()">vue el 外部添加</button>
+    <script type="text/javascript">
+        'use strict';
+
+        function add() {
+            // 修改 arr 的方式，如下不生效（但是长度增长为 4）
+            // app.arr[3] = 'outer';
+            // outData.arr[3] = 'outer';
+
+            // 修改 arr 的方式，如下生效（但是长度增长为 4 并修改 app.arr，Vue set 存在的意义）
+            Vue.set(app.arr, 3,'outer');
+            console.log(app.arr);
+        }
+        var outData = {
+            arr: ['aaa', 'bbb', 'ccc']
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: outData
+        });
+    </script>
+</body>
+
+</html>

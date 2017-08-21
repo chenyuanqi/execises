@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>life-cycle</title>
+</head>
+
+<body>
+    <h1>life cycle</h1>
+    <hr>
+    <div id="app">
+        <span>{{ number }}</span>
+        <button @click="add">+1</button>
+        <button @click="destroy">destroy</button>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                number: 99
+            },
+            methods: {
+                add() {
+                    return this.number++;
+                },
+                destroy() {
+                    this.$destroy();
+                }
+            },
+            beforeCreate() {
+                console.log('创建前');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            created() {
+                console.log('已创建');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            beforeMount() {
+                console.log('挂载前');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            mounted() {
+                console.log('已挂载');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            beforeUpdate() {
+                console.log('更新前');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            updated() {
+                console.log('已更新');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            beforeDestroy() {
+                console.log('销毁前');
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            destroyed() {
+                console.log('已销毁');
+                console.log(this.$el);
+                console.log(this.$data);
+            }
+        });
+    </script>
+</body>
+
+</html>

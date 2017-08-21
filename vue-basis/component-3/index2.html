@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>component: son-parents</title>
+</head>
+
+<body>
+    <h1>component: pass son to parents</h1>
+    <hr>
+    <div id="app">
+        <son @connect="say"></son>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+         Vue.component('son',{
+            template:`<button @click="send">
+                        点击
+                     </button>`,
+            data(){
+                return{
+                    msg:'大家好，我是子组件的数据'
+                }
+            },
+            methods:{
+                send(){
+                    this.$emit('connect');
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            methods:{
+                say(){
+                    console.log(`大家好，我监听到了事件connect的触发`);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

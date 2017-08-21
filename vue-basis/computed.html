@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>computed</title>
+</head>
+
+<body>
+    <h1>computed</h1>
+    <hr>
+    <div id="app">
+        <span>{{ number1 }}</span> + <span>{{ number2 }}</span> = <span>{{ diff }}</span>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                number1: 33.33,
+                number2: 22.88
+            },
+            computed: {
+                diff() {
+                    return this.number1 + this.number2;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
