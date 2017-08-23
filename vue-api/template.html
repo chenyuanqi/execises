@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>template 模板</title>
+</head>
+
+<body>
+    <h1>template</h1>
+    <hr>
+    <div id="app">
+
+    </div>
+
+    <template id="tag">
+        <h2 style="color:blue">我是 template 标签里的模板</h2>
+    </template>
+
+    <script type="x-template" id="script">
+        <h2 style="color:green">我是 script 标签里的模板</h2>
+    </script>
+
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            // template: `<h1 style = "color:red" > 我是 vue 选项里的模板 </h1>`
+            // template: '#tag'
+            template: '#script'
+	    });
+    </script>
+</body>
+
+</html>
