@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+    <title>vue-router</title>
+</head>
+
+<body>
+    <h1>router</h1>
+    <hr>
+    <div id="app">
+        <!--左侧导航栏区域-->
+        <div class="nav">
+            <router-link to="/vue">简易 vue</a>
+            <router-link to="/es6">趣味 es6</a>
+            <!-- 如果使用 name: { name: 'career', params: { param: 123 }} -->
+            <router-link to="/career">人在职场</a>
+        </div>
+        <!--右侧内容区域-->
+        <div class="content">
+            <router-view class="view"></router-view>
+        </div>
+        <!--
+<router-link/> 组件用于帮助用户进行视图导航，也就是我们传统的 <a/> 标签经常做的事。 <a/> 标签用href属性来指定导航的目标地址，而 <router-link/> 组件则用to属性来指定目标地址。
+vue-router1.0 的导航语法是给 <a/> 标签添加v-link属性。
+        -->
+        <!--
+<router-view/> 组件负责渲染匹配到的视图组件，也就是渲染<router-link>指向的目标地址。
+        -->
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        const vueComponent = {
+            template: ` <div> 这里是《简易vue》教程 </div>`
+        };
+
+        const es6Component = {
+            template: ` <div> 这里是《趣味ES6》教程 </div> `
+        };
+        const careerComponent = {
+            template: ` <div> 《混口饭吃》与《工资待遇》 </div>`
+        };
+
+        const router = new VueRouter({
+            // mode: 'history',
+            // base: __dirname,
+            routes: [{
+                path: "/vue",
+                name: "vue",
+                component: vueComponent
+            }, {
+                path: "/es6",
+                name: "es6",
+                component: es6Component
+            }, {
+                path: "/career",
+                // name 相当于路由的快捷方式
+                name: "career",
+                component: careerComponent
+            }, ]
+        });
+
+        /*
+        var app = new Vue({
+            el: '#app',
+            // 如下类似于 router: router
+            router
+        });
+        */
+       
+        const app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+
+</html>

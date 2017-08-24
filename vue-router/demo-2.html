@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+    <title>vue-router</title>
+</head>
+
+<body>
+    <h1>router</h1>
+    <hr>
+    <div id="app">
+      <h1>Multiple Views</h1>
+      <ul>
+        <li>
+          <router-link to="/">/</router-link>
+        </li>
+        <li>
+          <router-link to="/other">/other</router-link>
+        </li>
+      </ul>
+      <router-view class="view one"></router-view>
+      <router-view class="view two" name="two"></router-view>
+      <router-view class="view three" name="three"></router-view>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        const fooComponent = { template: '<div>foo</div>' };
+        const barComponent = { template: '<div>bar</div>' };
+        const bazComponent = { template: '<div>baz</div>' };
+
+        const router = new VueRouter({
+          routes: [
+            { path: '/',
+              components: {
+                default: fooComponent,
+                two: barComponent,
+                three: bazComponent
+              }
+            },
+            {
+              path: '/other',
+              components: {
+                default: bazComponent,
+                two: barComponent,
+                three: fooComponent
+              }
+            }
+          ]
+        });
+       
+        const app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+
+</html>
