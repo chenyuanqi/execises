@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>PropsData-Option</title>
+</head>
+
+<body>
+    <h1>Vue propsData option</h1>
+    <hr>
+    <header>
+    </header>
+
+    <script type="text/javascript">
+        var headerTemplate = Vue.extend({
+                template: ` <p> {{ message }} - {{ number }} </p>`,
+                data: function(){
+                    return {
+                        message:'Hello,I am Header for template option.'
+                    }
+                },
+                props:['number']
+            }); 
+
+        new headerTemplate({propsData:{number: 1}}).$mount('header');
+    </script>
+</body>
+
+</html>
