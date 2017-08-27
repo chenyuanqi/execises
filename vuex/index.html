@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vuex"></script>
+    <title>vuex</title>
+</head>
+
+<body>
+    <h1>vuex counter</h1>
+    <hr>
+    <div id="app">
+        <div class="result">{{ result ? result : 0 }}</div>
+        <div class="enter">{{ enter === "" ? 0 : enter }}</div>
+        <div class="keys">
+            <div class="list">
+                <!--键盘区域-->
+                <keyboard v-for="item in keys" :value="item"></keyboard>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        Vue.component('keyboard', {
+                props: ['value'],
+                template: `<div
+                    @click="getKeyboardValue"
+                    :data-value="value" >
+                    {{ value }}
+                </div>`,
+                methods:{
+                    getKeyboardValue(event){
+                        let value = event.target.dataset.value;
+                        this.$store.commit('calculate',value)
+                    }
+                }
+         });
+
+         const store = new Vuex.Store({
+             state: {
+                 result: "",
+                 enter: ""
+             },
+             mutations: {
+                 calculate(state, value) {
+                   switch (value) {
+                      case '=':
+                          state.result = eval(state.enter);
+                          state.enter += value;
+                          break;
+
+                      case 'clear':
+                          state.result = state.enter = "";
+                          break;
+
+                      default:
+                          state.enter += value;
+                          break;
+                    }
+                 }
+             }
+         });
+
+        const app = new Vue({
+            store,
+            data: {
+                keys: [
+                  'clear', '+', '-', '*',
+                  '7', '8', '9', '/',
+                  '4', '5', '6', '0',
+                  '1', '2', '3', '=',
+                ]
+            },
+            computed: {
+                result() {
+                    return this.$store.state.result;
+                },
+                enter() {
+                    return this.$store.state.enter;
+                }
+            }
+        }).$mount('#app');
+    </script>
+</body>
+
+</html>

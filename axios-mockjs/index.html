@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"> </script>
+    <script src="./mock.js"></script>
+    <title>axios-mockjs</title>
+</head>
+
+<body>
+    <h1>axios-mockjs</h1>
+    <hr>
+    <div id="app">
+        <p>{{ id }}: {{ name }} - {{ age }} - {{ birthday }}</p>
+        <div>
+            <button @click="getUserDetail">mock</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                id: 'your-id',
+                name: 'your-name',
+                age: 'your-age',
+                birthday: 'your-birthday'
+            },
+            methods: {
+              getUserDetail() {
+                  axios.get('https://api.github.com/users/chenyuanqi', {
+                      params: {
+                          param: ''
+                      }
+                  }).
+                  then(function(res) {
+                      console.log(res);
+
+                      // mock data
+                      let mock = Mock.mock({
+                          'id|1-100': 1,
+                          'name|3-5': '*',
+                          'age|1-100': 100,
+                          'birthday': '@date("yyyy-MM-dd")'
+                      });
+
+                      // change binding data
+                      app.id   = mock.id;
+                      app.name = mock.name;
+                      app.age  = mock.age;
+                      app.birthday = mock.birthday;
+                  }).
+                  catch (function(err) {
+                      console.log(err);
+                  });
+            }
+          }
+        });
+    </script>
+</body>
+
+</html>
