@@ -16,4 +16,12 @@ Some codes will be recorded for my daily execises, here is demo list:
 └── css-layout
 
 ├── phpunit    
-└── laravel5.5_repository
+├── laravel-magic  
+└── laravel5.5-repository
+
+├── phpunit    
+├── laravel-magic  
+└── laravel5.5-repository
+   
+├── elasticsearch-doc 
+└── docs
