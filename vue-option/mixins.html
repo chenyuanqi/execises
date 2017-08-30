@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>mixins</title>
+</head>
+
+<body>
+    <h1>mixins</h1>
+    <hr>
+    <div id="app">
+        <span>{{ number }}</span> 
+        <button @click="add">click to add</button>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var mixinFunctions = {
+            updated: function() {
+                this.number = 0;
+                console.log(this.number);
+            }
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                number: 1
+            },
+            methods: {
+                add: function(){
+                    this.number++;
+                }
+            },
+            mixins: [ mixinFunctions ]
+        });
+    </script>
+</body>
+
+</html>

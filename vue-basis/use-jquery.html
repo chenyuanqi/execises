@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>use-jquery</title>
+</head>
+
+<body>
+    <h1>use-jquery</h1>
+    <hr>
+    <div id="app">
+        <p>message: <span id="message">{{ message }}</span></p>
+        <button @click="change">change message</button>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'I have not use jquery yet.'
+            },
+            methods: {
+                change: function() {
+                    $('#message').html('I am already use jquery, but the mesage has not change.');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

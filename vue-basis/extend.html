@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>extend:mount,destroy,forceUpdate,nextTick</title>
+</head>
+
+<body>
+    <h1>extend</h1>
+    <hr>
+    <div id="app">
+        {{ message }}
+    </div>
+    <div>
+        <p><button onclick="destroy()">destroy</button></p>
+        <p><button onclick="forceUpdate()">forceUpdate</button></p>
+        <p><button onclick="nextTick()">nextTick</button></p>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var extendFunction = Vue.extend({
+            template: `<p> {{ message }} </p>`,
+            data: function(){
+                return {
+                    message:'Hi, I was mounted by extend function.'
+                }
+            }
+        });
+        var app = new extendFunction().$mount("#app");
+
+        function destroy() {
+            app.message = 'Oh no, I was destroy by destroy function.';
+            app.$destroy();
+        }
+
+        function forceUpdate() {
+            app.message = 'Oh, I was updated by forceUpdate function.';
+        }
+
+        function nextTick() {
+            app.$nextTick(function(){
+                app.message = 'However, I was updated by nextTick function.';
+            });
+        }
+    </script>
+</body>
+
+</html>
