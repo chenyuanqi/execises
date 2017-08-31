@@ -19,6 +19,11 @@ GET /_cat/indices?v
 PUT /index?pretty
 ```
 
+```
+# 查看所有索引
+GET /_cat/indices?v
+```
+
 (5)新增记录  
 ```
 POST /index/type/[id]?pretty
@@ -93,3 +98,20 @@ POST /index/type/_bulk?pretty
 
 # 执行导入
 curl -XPOST 'host:port/index/type/_bulk?pretty&refresh' --data-binary "@import.json"
+
+(14)创建索引
+```
+PUT /index
+{
+"settings": {...},
+"mappings": {...}
+}
+```
+
+(15)更新索引配置
+```
+PUT /index/_settings
+{
+  ... [如 "number_of_replicas": 1]
+}
+```
