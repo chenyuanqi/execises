@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>events: on,once,off,emit</title>
+</head>
+
+<body>
+    <h1>events</h1>
+    <hr>
+    <div id="app">
+        {{ number }}
+    </div>
+    <div>
+        <p><button onclick="once()">$once</button></p>
+        <p><button onclick="on()">$on</button></p>
+        <p><button onclick="emit()">$emit</button></p>
+        <p><button onclick="off()">$off</button></p>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                number: 90
+            }
+        });
+
+        // 定义只执行一次的事件
+        function once() {
+            app.$once('once', function() {
+                console.log('I just operate once.');
+                this.number = 100;
+            });
+        }
+
+        // 定义绑定执行的事件
+        function on() {
+            console.log('I just bind the $on function.');
+            app.$on('on', function() {
+                this.number++;
+            });
+        }
+
+        // 调用 app 内部方法
+        function emit() {
+            console.log('I can use $on or $once function, but the $once just operate one twice.');
+            app.$emit('once');
+        }
+
+        // 关闭绑定的事件
+        function off() {
+            console.log('close $on function.');
+            app.$off('on');
+        }
+    </script>
+</body>
+
+</html>

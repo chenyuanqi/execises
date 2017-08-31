@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>slot</title>
+</head>
+<body>
+    <h1>slot</h1>
+    <hr>
+    <div id="app">
+        <website>
+            <span slot="url">{{ webData.url }}</span>    
+            <span slot="site">{{ webData.site }}</span>    
+            <span slot="skill">{{ webData.skill }}</span>    
+        </website>
+    </div>
+
+    <script type="text/javascript">
+        'use strict';
+
+        Vue.component('website', {
+            template: ` <div>
+                        <p>地址：<slot name="url"></slot></p>
+                        <p>站点：<slot name="site"></slot></p>
+                        <p>技能：<slot name="skill"></slot></p>
+                    </div>`
+        });
+    
+        var app = new Vue({
+            el:'#app',
+            data:{
+               webData:{
+                   url: 'http://baidu.com',
+                   site: '百度',
+                   skill: '脑图'
+               }
+            }
+        })
+    </script>
+    
+</body>
+</html>
