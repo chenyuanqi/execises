@@ -23,5 +23,5 @@ Some codes will be recorded for my daily execises, here is demo list:
 ├── laravel-magic  
 └── laravel5.5-repository
    
-├── elasticsearch-doc 
+├── elasticsearch-doc   
 └── docs

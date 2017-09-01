@@ -98,6 +98,7 @@ POST /index/type/_bulk?pretty
 
 # 执行导入
 curl -XPOST 'host:port/index/type/_bulk?pretty&refresh' --data-binary "@import.json"
+```
 
 (14)创建索引
 ```
