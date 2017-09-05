@@ -29,11 +29,13 @@ GET /index/_search
 ```
 
 (4)指定字段  
+```
 GET /index/_search
 {
   "query": {"match_all": {}},
   "_source": ["field_name", "field_name"]
 }
+```
 
 (5)匹配查询
 ```
