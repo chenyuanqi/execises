@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue"></script>
+    <title>key</title>
+</head>
+
+<body>
+    <h1>v-bind:key</h1>
+    <hr>
+    <div id="app">
+        <ul>
+        <!--
+在vue v-for渲染一个列表时，如果不用被操作的 item 数据 id 作为 key 的话，那么 vuejs 会默认使用数组 index 作为 key ，而这时如果数据列表发生变化，比如一个 item 被删除，则可能会发生数据不同步的怪异错误.
+        -->
+            <li v-for="(item, index) in items" :key="item.id" >{{ index }} - {{ item.name }}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        'use strict';
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: [
+                    {'id': 20, 'name': 'no.20'},
+                    {'id': 23, 'name': 'no.23'},
+                    {'id': 18, 'name': 'no.18'},
+                    {'id': 65, 'name': 'no.65'},
+                    {'id': 32, 'name': 'no.32'},
+                    {'id': 19, 'name': 'no.19'},
+                    {'id': 54, 'name': 'no.54'},
+                    {'id': 56, 'name': 'no.56'},
+                    {'id': 41, 'name': 'no.41'},
+                    {'id': 40, 'name': 'no.40'},
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>
