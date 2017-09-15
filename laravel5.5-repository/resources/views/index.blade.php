@@ -9,11 +9,14 @@
         <title>Laravel5.5-repository</title>
 
         <style src="{{ mix('css/app.css') }}"></style>
-        <script src="{{ mix('js/app.js') }}"></script>
+        <script>
+            window.Laravel = {
+                manager: 'administrator'
+            };
+        </script>
     </head>
     <body>
-        <div id="app">
-            <router-view></router-view>
-        </div>
+         <div id="app"></div>
+         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

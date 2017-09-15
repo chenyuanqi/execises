@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::group(['prefix' => '/'], function (){
+    Route::any('{all}', function (){
+        return view('index');
+    })->where('all', '[\/\w\.-]*');
 });

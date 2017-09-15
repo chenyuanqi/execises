@@ -7,13 +7,26 @@
 
 require('./bootstrap');
 
+// load the router setting.
 import router from './router';
+// load the store.
+import store from './store'
+// load the iView package.
 import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+// define mounted component.
+import App from './views/App';
 
 window.Vue = require('vue');
 
+// use package.
 Vue.use(iView);
 
 const app = new Vue({
-    router
-}).$mount('#app');
+    router,
+    store,
+    el: '#app',
+    render: h => h(App)
+});
+
+export { app, router };

@@ -16,3 +16,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['prefix' => 'v1'], function () {
+    // demo route
+    Route::group(['prefix' => 'demo'], function() {
+        Route::get('', ['uses' => 'Api\DemoController@index']);
+        Route::get('{id}', ['uses' => 'Api\DemoController@show']);
+        Route::post('', ['uses' => 'Api\DemoController@store']);
+        Route::put('{id}', ['uses' => 'Api\DemoController@update']);
+        Route::delete('{id}', ['uses' => 'Api\DemoController@delete']);
+    });
+
+});
+
