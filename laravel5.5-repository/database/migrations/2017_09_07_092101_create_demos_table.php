@@ -31,10 +31,12 @@ class CreateDemosTable extends Migration
             $table->unsignedInteger('yearly_salary')
                   ->comment('年薪/百万');
             $table->string('operator', 255)
+                  ->nullable()
                   ->comment('操作人');
             $table->date('birthday')
                   ->comment('出生日期');
             $table->timestamp('deleted_at')
+                  ->nullable()
                   ->comment('删除时间');
             $table->timestamps();
         });

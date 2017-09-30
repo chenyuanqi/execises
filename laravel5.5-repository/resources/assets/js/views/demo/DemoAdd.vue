@@ -38,7 +38,7 @@
                 <FormItem label="出生日期" prop="birthday">
                     <Row>
                         <Col span="10">
-                            <DatePicker type="date" placeholder="选择出生日期" v-model="formItem.birthday"></DatePicker>
+                            <DatePicker v-model="formItem.birthday" type="date" format="yyyy-MM-dd" placeholder="选择出生日期" :options="dateOptions"></DatePicker>
                         </Col>
                     </Row>
                 </FormItem>
@@ -56,6 +56,9 @@
     </Row>
 </template>
 <script>
+    import { mapState } from 'vuex';
+    import { COMMON, DEMO } from '../../store/api';
+
     export default{
          data () {
             const validatePhone = (rule, value, callback) => {
@@ -67,15 +70,10 @@
             };
 
             return {
-                formItem: {
-                    name: '',
-                    email: '',
-                    phone: '',
-                    address: '',
-                    is_activate: true,
-                    yearly_salary: '',
-                    birthday: '',
-                    description: ''
+                dateOptions: {
+                    disabledDate (date) {
+                        return date && date.valueOf() < Date.now() - 86400000;
+                    }
                 },
                 formRule: {
                     name: [
@@ -89,9 +87,11 @@
                         {required: true, message: '联系电话不能为空', trigger: 'blur'},
                         validatePhone
                     ],
+                    yearly_salary: [
+                        {required: true, message: '年薪不能为空', trigger: 'change'}
+                    ],
                     birthday: [
-                        {required: true, message: '出生日期不能为空', trigger: 'blur'},
-                        {type: 'date', message: '出生日期格式为 YYYY-MM-DD', trigger: 'change'}
+                        {required: true, type: 'date', message: '出生日期不能为空', trigger: 'change'}
                     ],
                     description: [
                         {required: true, message: '背景描述不能为空', trigger: 'blur'},
@@ -101,10 +101,16 @@
             }
         },
         methods: {
+            init () {
+                // change active name.
+                this.$store.commit(COMMON.ACTIVE_NAME, {
+                    name: 'demo/add'
+                });
+            },
             handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('提交成功!');
+                        this.$store.dispatch(DEMO.STORE, this.formItem);
                     }
                 })
             },
@@ -112,9 +118,12 @@
                 this.$refs[name].resetFields();
             }
         },
+        computed: mapState({
+            result:   state => state.demo.demoResult,
+            formItem: state => state.demo.formItem
+        }),
         mounted () {
-            console.log(this.$parent['activeName']);
-            this.$parent.getActiveRouterName;//$emit('getActiveRouterName');
+            this.init();
         }
     }
 </script>

@@ -17,7 +17,9 @@ import 'iview/dist/styles/iview.css';
 // define mounted component.
 import App from './views/App';
 
-window.Vue = require('vue');
+// Register global variables.
+window.Vue   = require('vue');
+window.Iview = require('iview');
 
 // use package.
 Vue.use(iView);

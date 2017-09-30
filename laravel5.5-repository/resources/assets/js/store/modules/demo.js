@@ -7,9 +7,34 @@ const state = {
     totalRecord: 0,
     pageOptions: [10, 30, 45, 60, 100],
     demoData: [],
-    demoDetail: [],
-    demoResult: [],
+    formItem: {
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        is_activate: '0',
+        yearly_salary: '',
+        birthday: '',
+        description: ''
+    },
+    demoDetail: {
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        is_activate: '0',
+        yearly_salary: '',
+        birthday: '',
+        description: ''
+    },
+    demoResult: {},
     spinShow: false
+};
+
+const getters = {
+    [DEMO.RESULT]: state => {
+        return state.demoResult;
+    }
 };
 
 const mutations = {
@@ -20,16 +45,16 @@ const mutations = {
         state.totalRecord = data.data.total;
     },
     [DEMO.DETAIL] (state, data) {
-        state.demoDetail.push(data);
+        state.demoDetail = data.data;
     },
     [DEMO.STORE] (state, data) {
-        state.demoResult.push(data);
+        state.demoResult = data.data;
     },
     [DEMO.UPDATE] (state, data) {
-        state.demoResult.push(data);
+        state.demoResult = data.data;
     },
     [DEMO.DELETE] (state, data) {
-        state.demoResult.push(data);
+        state.demoResult = data.data;
     },
     [DEMO.TOGGLE_SPIN] (state) {
         state.spinShow = !state.spinShow;
@@ -51,6 +76,7 @@ const actions = {
                 data: response.data
             });
         }).catch(error => {
+            console.error('服务器异常，稍后重试~');
             console.error(error);
         });
     },
@@ -86,8 +112,16 @@ const actions = {
                     type: DEMO.STORE,
                     data: response.data
                 });
+
+                if(1 === response.data.status) {
+                    Iview.Message.success('提交成功!');
+                } else {
+                    let error = response.data.error ? response.data.error : '';
+                    Iview.Message.error(`提交失败! ${error}`);
+                }
         }).catch(error => {
             console.error(error);
+            Iview.Message.error('服务器异常，请稍后访问~');
         });
     },
 
@@ -104,8 +138,16 @@ const actions = {
                 type: DEMO.UPDATE,
                 data: response.data
             });
+
+            if(1 === response.data.status) {
+                Iview.Message.success('提交成功!');
+            } else {
+                let error = response.data.error ? response.data.error : '';
+                Iview.Message.error(`提交失败! ${error}`);
+            }
         }).catch(error => {
             console.error(error);
+            Iview.Message.error('服务器异常，请稍后访问~');
         });
     },
 
@@ -130,6 +172,7 @@ const actions = {
 
 export default {
     state,
+    getters,
     mutations,
     actions
 };

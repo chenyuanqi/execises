@@ -4,7 +4,7 @@
 
             <!-- Menu setting. -->
             <Col span="3" class="layout-menu-left">
-                <Menu :active-name="activeName" theme="dark" width="auto"
+                <Menu :active-name="activeName" theme="dark" width="auto" ref="menu"
                       :open-names="['home', 'demo']"
                       :accordion="accordion"
                       @on-select="onSelect">
@@ -74,11 +74,12 @@
     </div>
 </template>
 <script>
+    import { mapState } from 'vuex';
+    import { COMMON } from '../../store/api';
+    
     export default {
         data () {
             return {
-                accordion: false,
-                activeName: '',
                 manager: ''
             }
         },
@@ -91,11 +92,23 @@
             getActiveRouterName () {
                 for (let item in this.$route.matched) {
                     if (this.$route.path === this.$route.matched[item].path) {
-                        this.activeName = this.$route.matched[item].name;
+                        this.$store.commit(COMMON.ACTIVE_NAME, {
+                            name: this.$route.matched[item].name
+                        });
                     }
                 }
             }
         },
+        updated () {
+            this.$nextTick(() => {
+                this.$refs.menu.updateOpened;
+                this.$refs.menu.updateActiveName;
+            });
+        },
+        computed: mapState({
+            activeName: state => state.common.activeName,
+            accordion:  state => state.common.accordion
+        }),
         mounted () {
             this.getActiveRouterName();
             this.manager = window.Laravel.manager;
