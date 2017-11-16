@@ -1,0 +1,16 @@
+
+<!-- svg 阴影属性说明： -->
+<!-- 偏移一个矩形（带 < feOffset > ），然后混合偏移图像顶部(含 < feBlend > ) -->
+<!-- < filter > 标签的 id 属性可为滤镜定义一个唯一的名称（同一滤镜可被文档中的多个元素使用） -->
+<!-- filter:url 属性用来把元素链接到滤镜。当链接滤镜 id 时，必须使用 # 字符 -->
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <filter id="f1" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+      <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+    </filter>
+  </defs>
+  <rect width="90" height="90" stroke="green" stroke-width="3"
+  fill="yellow" filter="url(#f1)" />
+</svg>

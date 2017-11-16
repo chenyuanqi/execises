@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>d3 刷新数据</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <div id="ruler"></div>
+    <div>
+      <input type="button" onclick="refresh();" value="refresh">
+    </div>
+  </body>
+  <script>
+  var scopeSet = [0, 20, 40, 60, 80];
+  var color    = ["#81DAF5", "#045FB4"];
+
+  let rulerSvg = d3.select('#ruler')
+      .append("svg:svg")
+      .attr("width", 200)
+      .attr("height", 20 * 5);
+  rulerSvg.selectAll("rect")
+      .data(scopeSet)
+      .enter()
+      .append("rect")
+      .attr("x", 20)
+      .attr("y", (d, i) => {
+      	return 20 * i;
+      }).attr("width", 23)
+      .attr("height", 18)
+      .attr("fill", (d, i) => {
+          return d3.interpolate(color[0], color[1])(d/100);
+      });
+  // 标尺文本添加
+  rulerSvg.selectAll("ruler_text")
+      .data(scopeSet)
+      .enter()
+      .append("text")
+      .attr("fill", "#4FA9DB")
+      .attr("font-size", "11px")
+      .attr("font-weight", "bold")
+      .attr("transform","translate(4, -7)")
+      .attr("x", 20)
+      .attr("y", (d, i) => {
+          return 20 * i;
+      }).attr("dx", 20)
+      .attr("dy", 20)
+      .text((d) => {
+          let maxScope   =  d + 20;
+          let startScope = d < 1000 ? d : (d / 1000).toFixed(0) + 'K';
+          let endScope   = maxScope < 1000 ? maxScope : (maxScope / 1000).toFixed(0) + 'K';
+
+          return startScope + ' - ' + endScope;
+      });
+
+      function refresh() {
+        var scopeSet = [0, 2, 4, 6, 8];
+
+        // 更新标尺文本
+        // d3.select("#ruler").select("svg").selectAll("text").remove();
+        d3.selectAll("text")
+          .update(scopeSet);
+          .text((d) => {
+              let maxScope   =  d + 2;
+              let startScope = d < 1000 ? d : (d / 1000).toFixed(0) + 'K';
+              let endScope   = maxScope < 1000 ? maxScope : (maxScope / 1000).toFixed(0) + 'K';
+
+              return startScope + ' - ' + endScope;
+          });
+      }
+  </script>
+</html>
