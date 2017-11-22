@@ -1,0 +1,15 @@
+<!-- 创建剪切圆 -->
+<!-- clip-path 属性是指定一个应用到元素上的剪切路径 -->
+<!-- clipPath 元素经常放在一个defs元素内 -->
+<!-- rect不会被绘制，它的象素数据将用来确定：圆形的哪些像素需要最终呈现出来 -->
+<!-- 对于这个剪切，clipPath 内部的每个路径都会被检查到、与它的描边属性一起被估值、变形。然后目标的位于clipPath内容的结果的透明度区域的每一块都不会呈现。 -->
+<!-- 颜色、不透明度都没有这种效果，因为它们不能让一部分彻底消失。 -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <clipPath id="cut-off-bottom">
+        <rect x="0" y="0" width="200" height="100" />
+      </clipPath>
+    </defs>
+  
+    <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+</svg>
